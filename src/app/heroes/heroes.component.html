@@ -1,60 +1,8 @@
-<!-- Show the hero object -->
-<!-- Update the binding in the template to announce the hero's name and show both id and name in a details -->
-<!-- Pipes are a good way to format strings, currency amounts, dates and other display data. 
-Angular ships with several built-in pipes and you can create your own. -->
-
-<!-- Format with the UppercasePipe -->
-<!-- <h2>{{hero.name | uppercase}} Details</h2>
-<div><span>id: </span>{{hero.id}}</div>
-<div><span>name: </span>{{hero.name}}</div> -->
-<!-- Edit the hero 
-To automate that data flow, setup a two-way data binding between the <input> 
-form element and the hero.name property.
--->
-<div>
-  <!-- <label>name: -->
-      <!-- Although ngModel is a valid Angular directive, it isn't available by default.
-      It belongs to the optional FormsModule and you must opt-in to using it. -->
-    <!-- <input [(ngModel)]="hero.name" placeholder="name">
-  </label> -->
-
-  <h2>My Heroes</h2>
-  <!-- List heroes with *ngFor -->
-  <!-- The *ngFor is Angular's repeater directive. It repeats the host element for each element in a list. -->
-
-  <ul class="heroes">
-      <!-- Don't forget the asterisk (*) in front of ngFor. It's a critical part of the syntax. -->
-    <li *ngFor="let hero of heroes" (click)="onSelect(hero)"    [class.selected]="hero === selectedHero">
+<ul class="heroes">
+    <li *ngFor="let hero of heroes"
+      [class.selected]="hero === selectedHero"
+      (click)="onSelect(hero)">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </li>
   </ul>
- 
-
-
-    <!-- In this example
-
-    <li> is the host element
-    heroes is the list from the HeroesComponent class.
-    hero holds the current hero object for each iteration through the list. -->
-
-    <!-- Update the details template
-    The template still refers to the component's old hero property which no longer exists.
-     Rename hero to selectedHero. -->
-   
-     <!-- The component should only display the selected hero details if the selectedHero exists.
-
-     Wrap the hero detail HTML in a <div>. Add Angular's *ngIf directive to the <div> and set it to selectedHero. 
-    Don't forget the asterisk (*) in front of ngIf. It's a critical part of the syntax.  
-    
-    -->
-     <div *ngIf="selectedHero">
-     <h2>{{selectedHero.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{selectedHero.id}}</div>
-    <div>
-      <label>name:
-        <input [(ngModel)]="selectedHero.name" placeholder="name">
-      </label>
-    </div>
-  </div>
-
-</div>
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
